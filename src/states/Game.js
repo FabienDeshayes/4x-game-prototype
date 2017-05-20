@@ -8,11 +8,11 @@ export default class extends Phaser.State {
 
   create () {
     const bannerText = 'Fantastic Creatures'
-    let banner = this.add.text(this.world.centerX, 30, bannerText)
-    banner.font = 'Bangers'
+    let banner = this.add.text(this.world.centerX, 60, bannerText)
+    banner.font = 'Alegreya'
     banner.padding.set(10, 16)
     banner.fontSize = 40
-    banner.fill = '#77BFA3'
+    banner.fill = '#333333'
     banner.smoothed = false
     banner.anchor.setTo(0.5)
 
@@ -31,7 +31,7 @@ export default class extends Phaser.State {
        for (var yy = 256; yy > 0; yy -= 48) {
            // Create a cube using the new game.add.isoSprite factory method at the specified position.
            // The last parameter is the group you want to add it to (just like game.add.sprite)
-           cube = game.add.isoSprite(xx, yy, 0, 'mushroom', 0, this.isoGroup)
+           cube = game.add.isoSprite(xx, yy, 0, 'tilesTypes', Math.floor(Math.random() * 10), this.isoGroup)
            cube.anchor.set(0.5)
 
            // Store the old messed up ordering so we can compare the two later.
@@ -40,18 +40,8 @@ export default class extends Phaser.State {
     }
 
     // Just a var so we can tell if the group is this.sorted or not.
-    this.sorted = false
+    this.game.iso.simpleSort(this.isoGroup)
 
-    // Toggle sorting on click/tap.
-    game.input.onDown.add(function () {
-       this.sorted = !this.sorted
-       if (this.sorted) {
-           this.game.iso.simpleSort(this.isoGroup)
-       }
-       else {
-           this.isoGroup.sort('oldZ')
-       }
-    }, this)
   }
 
   render () {

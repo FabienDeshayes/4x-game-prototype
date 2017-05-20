@@ -14,6 +14,7 @@ export default class extends Phaser.State {
     // load your assets
     //
     this.load.image('mushroom', 'assets/images/mushroom2.png')
+    this.load.spritesheet('tilesTypes', 'assets/images/basic_ground_tiles.png', 128, 128)
   }
 
   create () {
