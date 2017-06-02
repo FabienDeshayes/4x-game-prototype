@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'moyko';
+    src: url('moyko.woff2') format('woff2'),
+         url('moyko.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

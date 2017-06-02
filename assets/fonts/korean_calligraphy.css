@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Korean Calligraphy';
+    src: url('korean_calligraphy.woff2') format('woff2'),
+         url('korean_calligraphy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

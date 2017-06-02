@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "phaser-ce": "^2.7.7",
-    "phaser-plugin-isometric": "^0.9.2",
     "webfontloader": "^1.6.27"
   }
 }
