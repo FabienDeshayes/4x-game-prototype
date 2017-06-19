@@ -24,6 +24,7 @@ export default class extends Phaser.State {
 
   create() {
     const text = this.add.text(this.world.centerX, this.world.centerY, 'Loading...', { font: '16px Arial', fill: '#333333', align: 'center' })
+    this.game.physics.startSystem(Phaser.Physics.ARCADE)
     centerGameObjects(text)
   }
 
