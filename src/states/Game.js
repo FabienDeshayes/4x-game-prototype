@@ -20,7 +20,7 @@ export default class extends Phaser.State {
     this.load.image('map_mountain_tile', 'assets/images/map_mountain_tile.png')
     this.load.image('map_grassland_tile', 'assets/images/map_grassland_tile.png')
     this.load.image('map_forest_tile', 'assets/images/map_forest_tile.png')
-    this.load.image('map_pixel_object', 'assets/images/map_forest_tile.png')
+    this.load.image('map_pixel_object', 'assets/images/map_placeholder_player.png')
   }
 
   create () {
@@ -35,34 +35,45 @@ export default class extends Phaser.State {
         const tileType = getTileSprite(tiles[i][j])
     		const hexagonX = (width * 1.5) * i + (width * 3 / 4) * (j % 2)
     		const hexagonY = height * j / 2
-    		const hexagon = this.game.add.sprite(hexagonX, hexagonY, tileType)
-    		this.map.add(hexagon)
+    		const tile = this.game.add.sprite(hexagonX, hexagonY, tileType)
+        tile.inputEnabled = true
+        tile.data = tileType
+        tile.events.onInputOver.add(this.over, this, tile)
+        tile.events.onInputOut.add(this.out, this, tile)
+    		this.map.add(tile)
       }
     }
-    this.cameraPixel = this.game.add.sprite(1, 1, 'map_pixel_object')
+    this.cameraPixel = this.game.add.sprite(500, 200, 'map_pixel_object')
     this.game.physics.arcade.enable(this.cameraPixel)
     this.game.camera.follow(this.cameraPixel)
     this.cursors = this.game.input.keyboard.createCursorKeys()
   }
 
-  update() {
+  out () {
+    console.log('out of tile')
+  }
 
+  over(tile) {
+    console.log('over tile', tile.data)
+  }
+
+  update() {
     this.cameraPixel.body.velocity.y = 0
     this.cameraPixel.body.velocity.x = 0
 
 
     if (this.cursors.up.isDown) {
-        this.cameraPixel.body.velocity.y -= 200
+        this.cameraPixel.body.velocity.y -= 300
     }
     else if (this.cursors.down.isDown) {
-        this.cameraPixel.body.velocity.y += 200
+        this.cameraPixel.body.velocity.y += 300
     }
 
     if (this.cursors.left.isDown) {
-        this.cameraPixel.body.velocity.x -= 200
+        this.cameraPixel.body.velocity.x -= 300
     }
     else if (this.cursors.right.isDown) {
-        this.cameraPixel.body.velocity.x += 200
+        this.cameraPixel.body.velocity.x += 300
     }
   }
 
